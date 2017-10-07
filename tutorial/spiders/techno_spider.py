@@ -29,11 +29,8 @@ class TechnoSpider(scrapy.Spider):
             currency = item.css('figcaption  .product-price small::text').extract_first()
             currency_name = u''.join(currency)
 
-            # data = "Name: %s, Url: %s, Price: %s %s" % (name, url, total_price, currency_name)
-            # data = name + url + total_price+ currency_name;
             data = u' '.join(("Name: %s, Url: %s, Price: %s %s" % (name, url, total_price, currency_name))).encode('utf-8').strip()
 
-            # print("Name: %s, Url: %s, Price: %s %s" % (name, url, total_price, currency_name))
 
             print("Saved file %s" % data)
             fields = [name.encode('utf-8'), url.encode('utf-8'), total_price.encode('utf-8'), currency_name.encode('utf-8')]
