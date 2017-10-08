@@ -29,13 +29,11 @@ class TechnoSpider(scrapy.Spider):
             currency = item.css('figcaption  .product-price small::text').extract_first()
             currency_name = u''.join(currency)
 
-            data = u' '.join(("Name: %s, Url: %s, Price: %s %s" % (name, url, total_price, currency_name))).encode('utf-8').strip()
+            # data = u' '.join(("Name: %s, Url: %s, Price: %s %s" % (name, url, total_price, currency_name))).encode('utf-8').strip()
+            # print("Saved data %s" % data)
 
-
-            print("Saved file %s" % data)
             fields = [name.encode('utf-8'), url.encode('utf-8'), total_price.encode('utf-8'), currency_name.encode('utf-8')]
-
-
+            # @Todo refactor this using Scrapy
             with open(self.filename, "ab") as f:
                 writer = csv.writer(f)
                 writer.writerow(fields)
